@@ -1,6 +1,12 @@
 import React from "react";
 import { Formik, useFormik } from "formik";
 
+interface Values {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
 export default function Index() {
   const formik = useFormik({
     initialValues: {
@@ -8,7 +14,11 @@ export default function Index() {
       password: "",
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      fetch("/api/feeback", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
     },
   });
 
